@@ -1,0 +1,2 @@
+Taxi_fare_prediction data structure: 1.⏱️ 'trip_duration': How long did the journey last? 2.🛣️ 'distance_traveled': How far did the taxi travel? 3.🧑‍🤝‍🧑 'num_of_passengers': How many passengers were in the taxi? 4. 💵 'fare': What's the base fare for the journey? 5.💲 'tip': How much did the driver receive in tips? 6.🎀 'miscellaneous_fees': Were there any additional charges during the trip? 7.💰 'total_fare': The grand total for the ride (this is your prediction target!). 8.⚡ 'surge_applied': Was there a surge pricing applied? Yes or no?
+
