@@ -1,0 +1,59 @@
+!pip install selenium
+!pip install selenium-webdriver-headless
+!pip install webdriver_manager
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+
+(* # Set the path to the ChromeDriver executable *)
+chrome_options = Options()
+chrome_options.add_argument('--headless=new')
+chrome_options.headless = True
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--disable-extensions')
+chrome_options.add_argument('--disable-infobars')
+chrome_options.add_argument('--disable-features=NetworkService')
+chrome_options.add_argument('--no-sandbox')
+
+(* # Create a new instance of the Chrome browser*)
+driver = webdriver.Chrome(options=chrome_options)
+
+(* # Navigate to a web page *)
+website = ("https://www.scrapethissite.com/pages/simple/")
+driver.get(website)
+
+country_list = driver.find_elements(By.XPATH,"//h3[@class = 'country-name']")
+country_list
+
+(* # parse the data
+countries = [] *)
+for country in country_list:
+(*   # get the text data
+  temp = country.text *)
+  countries.append(temp)
+countries
+
+population_list = driver.find_elements(By.CLASS_NAME,'country-population')
+population_list
+
+populations = []
+for population in population_list:
+  #get the text data
+  temp = population.text
+  populations.append(temp)
+populations 
+
+import pandas as pd
+data = pd.DataFrame()
+data['Country Names'] = countries
+data['Population'] = populations
+data.head()
+
+!pip install xlwt
+
+data.to_excel('countries.xls', index=False)
+driver.quit()
